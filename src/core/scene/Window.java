@@ -1,7 +1,6 @@
 package core.scene;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 
 abstract public class Window extends Application {
     protected static int WINDOW_WIDTH;
