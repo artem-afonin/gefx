@@ -8,6 +8,7 @@ public class MainWindow extends Window {
     @Override
     public void start(Stage primaryStage) throws Exception {
         STAGE_TITLE = "GEFX";
+        setUserAgentStylesheet(STYLESHEET_CASPIAN);
 
         Parent window = FXMLLoader.load(getClass().getResource("/fx/fxml/MainWindow.fxml"));
         Scene scene = new Scene(window);
