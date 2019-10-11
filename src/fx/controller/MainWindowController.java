@@ -4,7 +4,6 @@ import core.scene.AboutWindow;
 import core.tool.DotTool;
 import core.tool.DrawHandler;
 import core.tool.DrawTool;
-import core.tool.LineTool;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
