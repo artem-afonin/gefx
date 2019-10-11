@@ -13,7 +13,7 @@ public class LineTool extends DrawTool{
     }
 
     public void draw(double x1, double y1, double x2, double y2) {
-        graphicsContext.setStroke(color);
+        configureGraphicsContext();
         graphicsContext.strokeLine(x1, y1, x2, y2);
     }
 }
