@@ -11,6 +11,10 @@ abstract public class DrawTool {
     protected StrokeLineCap strokeLineCap;
     protected GraphicsContext graphicsContext;
 
+    public DrawTool() {
+        this(null);
+    }
+
     public DrawTool(GraphicsContext context) {
         this(context, Color.BLACK);
     }
@@ -68,4 +72,6 @@ abstract public class DrawTool {
         graphicsContext.setLineWidth(strokeWidth);
         graphicsContext.setLineCap(strokeLineCap);
     }
+
+    abstract protected void draw(double x1, double y1, double x2, double y2);
 }
