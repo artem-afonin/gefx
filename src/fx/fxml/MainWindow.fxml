@@ -57,10 +57,12 @@
    <center>
       <StackPane style="-fx-background-color: #444444;">
          <children>
-            <Group>
+            <Group fx:id="drawGroup">
                <children>
-                  <Canvas height="200.0" width="200.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <Pane fx:id="drawPane" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: white;">
+                     <children>
+                        <Canvas fx:id="canvas" height="400.0" width="400.0" />
+                     </children></Pane>
                </children>
             </Group>
          </children>
