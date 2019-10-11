@@ -4,6 +4,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class LineTool extends DrawTool{
+    public LineTool() {
+        super();
+    }
+
     public LineTool(GraphicsContext context) {
         super(context);
     }
