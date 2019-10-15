@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = "core.GraphicalEditor"
+mainClassName = "gefx.core.GraphicalEditor"
 
 sourceSets {
     main {
@@ -10,7 +10,7 @@ sourceSets {
             srcDirs = ['src']
         }
         resources {
-            srcDirs = ['src']
+            srcDirs = ['src/resources']
         }
     }
 }

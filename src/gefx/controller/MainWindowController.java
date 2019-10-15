@@ -1,9 +1,9 @@
-package fx.controller;
+package gefx.controller;
 
-import core.scene.AboutWindow;
-import core.tool.DotTool;
-import core.tool.DrawHandler;
-import core.tool.DrawTool;
+import gefx.core.scene.AboutWindow;
+import gefx.core.tool.DotTool;
+import gefx.core.tool.DrawHandler;
+import gefx.core.tool.DrawTool;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;

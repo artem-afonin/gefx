@@ -1,4 +1,4 @@
-package core.tool;
+package gefx.core.tool;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
