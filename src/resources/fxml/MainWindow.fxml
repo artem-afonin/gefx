@@ -60,7 +60,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ColorPicker editable="true" focusTraversable="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ColorPicker fx:id="toolColorCheckbox" editable="true" focusTraversable="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane alignment="CENTER" pickOnBounds="false" vgap="20.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -70,7 +70,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Slider blockIncrement="1.0" focusTraversable="false" majorTickUnit="50.0" max="50.0" min="1.0" minorTickCount="1" value="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Slider fx:id="toolWidthSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="50.0" max="50.0" min="1.0" minorTickCount="1" value="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Размер кисти" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
