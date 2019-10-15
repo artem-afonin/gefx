@@ -1,6 +1,6 @@
-package core;
+package gefx.core;
 
-import core.scene.MainWindow;
+import gefx.core.scene.MainWindow;
 import javafx.application.Application;
 
 import static javafx.application.Application.launch;

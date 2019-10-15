@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gefx.controller.MainWindowController">
+   <top>
+      <MenuBar focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Главное">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Закрыть программу" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openAboutWindow" text="О программе" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <StackPane style="-fx-background-color: dddddd; -fx-border-color: #777777; -fx-border-width: 3;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: #dddddd;">
+               <children>
+                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Загрузить&#10;картинку" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Сохранить&#10;картинку&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <GridPane vgap="30.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ColorPicker fx:id="toolColorCheckbox" editable="true" focusTraversable="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <GridPane alignment="CENTER" pickOnBounds="false" vgap="20.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Slider fx:id="toolWidthSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="50.0" max="50.0" min="1.0" minorTickCount="1" value="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Размер кисти" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </left>
+   <center>
+      <StackPane style="-fx-background-color: #444444;">
+         <children>
+            <Group fx:id="drawGroup">
+               <children>
+                  <Pane fx:id="drawPane" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: white;">
+                     <children>
+                        <Canvas fx:id="canvas" height="400.0" width="400.0" />
+                     </children></Pane>
+               </children>
+            </Group>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

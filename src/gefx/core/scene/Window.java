@@ -1,4 +1,4 @@
-package core.scene;
+package gefx.core.scene;
 
 import javafx.application.Application;
 

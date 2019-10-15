@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = "core.GraphicalEditor"
+mainClassName = "gefx.core.GraphicalEditor"
 
 sourceSets {
     main {
@@ -10,7 +10,7 @@ sourceSets {
             srcDirs = ['src']
         }
         resources {
-            srcDirs = ['src']
+            srcDirs = ['src/resources']
         }
     }
 }
@@ -19,10 +19,30 @@ jar {
     manifest.attributes("Main-Class": mainClassName)
 }
 
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
 repositories {
-    jcenter()
+    mavenCentral()
+}
+
+def currentOS = org.gradle.internal.os.OperatingSystem.current()
+def platform
+if (currentOS.isWindows()) {
+    platform = 'win'
+} else if (currentOS.isLinux()) {
+    platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+    platform = 'mac'
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile "org.openjfx:javafx-base:11.0.2:${platform}"
+    compile "org.openjfx:javafx-graphics:11.0.2:${platform}"
+    compile "org.openjfx:javafx-controls:11.0.2:${platform}"
+    compile "org.openjfx:javafx-fxml:11.0.2:${platform}"
 }

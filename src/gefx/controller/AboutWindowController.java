@@ -1,4 +1,4 @@
-package fx.controller;
+package gefx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
