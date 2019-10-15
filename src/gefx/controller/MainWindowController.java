@@ -6,8 +6,13 @@ import gefx.core.tool.DrawHandler;
 import gefx.core.tool.DrawTool;
 import gefx.core.tool.LineTool;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -16,6 +21,8 @@ public class MainWindowController {
     public Canvas canvas;
     public Group drawGroup;
     public Pane drawPane;
+    public ColorPicker toolColorCheckbox;
+    public Slider toolWidthSlider;
 
     private DrawTool tool;
     private Color toolColor;
@@ -29,6 +36,12 @@ public class MainWindowController {
         setTool(new DotTool());
         drawHandler = new DrawHandler(canvas, tool);
         drawHandler.runHandler();
+
+        toolWidthSlider.setOnMouseDragged(this::toolWidthSliderHandler);
+        toolColorCheckbox.setOnAction(this::toolColorCheckboxHandler);
+
+        toolWidthSlider.setValue(tool.getStrokeWidth());
+        toolColorCheckbox.setValue(Color.BLACK);
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -58,5 +71,13 @@ public class MainWindowController {
 
     public void setLineTool() {
         setTool(new LineTool());
+    }
+
+    public void toolColorCheckboxHandler(ActionEvent event) {
+        tool.setColor(toolColorCheckbox.getValue());
+    }
+
+    public void toolWidthSliderHandler(MouseEvent event) {
+        tool.setStrokeWidth(toolWidthSlider.getValue());
     }
 }
