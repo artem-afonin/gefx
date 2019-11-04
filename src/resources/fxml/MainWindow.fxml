@@ -41,12 +41,12 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: #dddddd;">
                <children>
-                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Загрузить&#10;картинку" textAlignment="CENTER">
+                  <Button fx:id="loadImageButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Загрузить&#10;картинку" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Сохранить&#10;картинку&#10;" textAlignment="CENTER">
+                  <Button fx:id="saveImageButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Сохранить&#10;картинку&#10;" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

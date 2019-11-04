@@ -14,7 +14,7 @@ public class MainWindow extends Window {
         Scene scene = new Scene(window);
 
         primaryStage.setTitle(STAGE_TITLE);
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
