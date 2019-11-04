@@ -39,11 +39,17 @@ public class MainWindowController {
 
     private DrawHandler drawHandler;
 
+    private double prefCanvasWidth;
+    private double prefCanvasHeight;
+
 
     public void initialize() {
         setTool(new DotTool());
         drawHandler = new DrawHandler(canvas, tool);
         drawHandler.runHandler();
+
+        prefCanvasWidth = canvas.getWidth();
+        prefCanvasHeight = canvas.getHeight();
 
         toolWidthSlider.setOnMouseDragged(this::toolWidthSliderHandler);
         toolColorCheckbox.setOnAction(this::toolColorCheckboxHandler);
@@ -101,8 +107,8 @@ public class MainWindowController {
 
         Image image = new Image(
                 file.toURI().toString(),
-                canvas.getWidth(),
-                canvas.getHeight(),
+                prefCanvasWidth,
+                prefCanvasHeight,
                 true,
                 true,
                 false
@@ -112,10 +118,13 @@ public class MainWindowController {
                 image,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
+                BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
         drawPane.setBackground(new Background(backImage));
+        canvas.setWidth(image.getWidth());
+        canvas.setHeight(image.getHeight());
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
     public void saveImage(MouseEvent event) {
