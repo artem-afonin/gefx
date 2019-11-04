@@ -19,6 +19,16 @@ jar {
     manifest.attributes("Main-Class": mainClassName)
 }
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example', 'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 idea {
     module {
         downloadJavadoc = true
@@ -45,4 +55,5 @@ dependencies {
     compile "org.openjfx:javafx-graphics:11.0.2:${platform}"
     compile "org.openjfx:javafx-controls:11.0.2:${platform}"
     compile "org.openjfx:javafx-fxml:11.0.2:${platform}"
+    compile "org.openjfx:javafx-swing:11.0.2:${platform}"
 }

@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -41,12 +40,12 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: #dddddd;">
                <children>
-                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Загрузить&#10;картинку" textAlignment="CENTER">
+                  <Button fx:id="loadImageButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Загрузить&#10;картинку" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Сохранить&#10;картинку&#10;" textAlignment="CENTER">
+                  <Button fx:id="saveImageButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" text="Сохранить&#10;картинку&#10;" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -93,10 +92,11 @@
          <children>
             <Group fx:id="drawGroup">
                <children>
-                  <Pane fx:id="drawPane" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: white;">
+                  <StackPane fx:id="drawPane" style="-fx-background-color: white;">
                      <children>
                         <Canvas fx:id="canvas" height="400.0" width="400.0" />
-                     </children></Pane>
+                     </children>
+                  </StackPane>
                </children>
             </Group>
          </children>
