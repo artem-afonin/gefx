@@ -5,6 +5,7 @@ import gefx.core.tool.DotTool;
 import gefx.core.tool.DrawHandler;
 import gefx.core.tool.DrawTool;
 import gefx.core.tool.LineTool;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.Group;
@@ -14,6 +15,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -21,7 +23,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class MainWindowController {
     public Canvas canvas;
@@ -100,6 +106,7 @@ public class MainWindowController {
 
     public void loadImage(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Выберите изображение");
         File file = fileChooser.showOpenDialog(loadImageButton.getScene().getWindow());
 
         if (file == null)
@@ -128,6 +135,18 @@ public class MainWindowController {
     }
 
     public void saveImage(MouseEvent event) {
+        WritableImage image = drawGroup.snapshot(null, null);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить изображение");
+        fileChooser.setInitialFileName("image.png");
+        File file = fileChooser.showSaveDialog(saveImageButton.getScene().getWindow());
+
+        try {
+            ImageIO.write(bufferedImage, "png", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
