@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -24,6 +25,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MainWindowController {
     public Canvas canvas;
@@ -31,8 +33,15 @@ public class MainWindowController {
     public Pane drawPane;
     public ColorPicker toolColorCheckbox;
     public Slider toolWidthSlider;
+
     public Button loadImageButton;
     public Button saveImageButton;
+
+    public Button dotToolButton;
+    public Button lineToolButton;
+    public Button rectangleToolButton;
+    public Button circleToolButton;
+
 
     private DrawTool tool;
     private Color toolColor;
@@ -61,6 +70,8 @@ public class MainWindowController {
 
         loadImageButton.setOnMouseClicked(this::loadImage);
         saveImageButton.setOnMouseClicked(this::saveImage);
+
+        setToolButtonsImages();
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -139,10 +150,73 @@ public class MainWindowController {
         fileChooser.setInitialFileName("image.png");
         File file = fileChooser.showSaveDialog(saveImageButton.getScene().getWindow());
 
+        if (file == null)
+            return;
+
         try {
             ImageIO.write(bufferedImage, "png", file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setToolButtonsImages() {
+        Image dotToolImage = null;
+        Image lineToolImage = null;
+        Image rectangleToolImage = null;
+        Image circleToolImage = null;
+
+        try {
+            dotToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/dotTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            lineToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/lineTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            rectangleToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/rectangleTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            circleToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/circleTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        dotToolButton.graphicProperty().setValue(new ImageView(dotToolImage));
+        lineToolButton.graphicProperty().setValue(new ImageView(lineToolImage));
+        rectangleToolButton.graphicProperty().setValue(new ImageView(rectangleToolImage));
+        circleToolButton.graphicProperty().setValue(new ImageView(circleToolImage));
     }
 }
