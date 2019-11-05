@@ -139,6 +139,9 @@ public class MainWindowController {
         fileChooser.setInitialFileName("image.png");
         File file = fileChooser.showSaveDialog(saveImageButton.getScene().getWindow());
 
+        if (file == null)
+            return;
+
         try {
             ImageIO.write(bufferedImage, "png", file);
         } catch (IOException e) {
