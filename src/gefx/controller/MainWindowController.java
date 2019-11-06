@@ -1,10 +1,7 @@
 package gefx.controller;
 
 import gefx.core.scene.AboutWindow;
-import gefx.core.tool.DotTool;
-import gefx.core.tool.DrawHandler;
-import gefx.core.tool.DrawTool;
-import gefx.core.tool.LineTool;
+import gefx.core.tool.*;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
@@ -13,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -31,8 +29,15 @@ public class MainWindowController {
     public Pane drawPane;
     public ColorPicker toolColorCheckbox;
     public Slider toolWidthSlider;
+
     public Button loadImageButton;
     public Button saveImageButton;
+
+    public Button dotToolButton;
+    public Button lineToolButton;
+    public Button rectangleToolButton;
+    public Button circleToolButton;
+
 
     private DrawTool tool;
     private Color toolColor;
@@ -46,9 +51,7 @@ public class MainWindowController {
 
 
     public void initialize() {
-        setTool(new DotTool());
-        drawHandler = new DrawHandler(canvas, tool);
-        drawHandler.runHandler();
+        setDotTool();
 
         prefCanvasWidth = canvas.getWidth();
         prefCanvasHeight = canvas.getHeight();
@@ -61,6 +64,12 @@ public class MainWindowController {
 
         loadImageButton.setOnMouseClicked(this::loadImage);
         saveImageButton.setOnMouseClicked(this::saveImage);
+
+        setToolButtonsImages();
+        dotToolButton.setOnMouseClicked(event -> {setDotTool();});
+        lineToolButton.setOnMouseClicked(event -> {setLineTool();});
+        rectangleToolButton.setOnMouseClicked(event -> {setRectangleTool();});
+        circleToolButton.setOnMouseClicked(event -> {setCircleTool();});
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -82,6 +91,11 @@ public class MainWindowController {
         this.tool.setColor(toolColor);
         this.tool.setStrokeWidth(toolWidth);
         this.tool.setCurrentOpacity(toolOpacity);
+        if (drawHandler != null) {
+            drawHandler.setDrawTool(this.tool);
+        } else {
+            drawHandler = new DrawHandler(canvas, this.tool);
+        }
     }
 
     public void setDotTool() {
@@ -90,6 +104,14 @@ public class MainWindowController {
 
     public void setLineTool() {
         setTool(new LineTool());
+    }
+
+    public void setRectangleTool() {
+        setTool(new RectangleTool());
+    }
+
+    public void setCircleTool() {
+        setTool(new CircleTool());
     }
 
     public void toolColorCheckboxHandler(ActionEvent event) {
@@ -127,7 +149,7 @@ public class MainWindowController {
         drawPane.setBackground(new Background(backImage));
         canvas.setWidth(image.getWidth());
         canvas.setHeight(image.getHeight());
-        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        clearCanvas(null);
     }
 
     public void saveImage(MouseEvent event) {
@@ -139,10 +161,77 @@ public class MainWindowController {
         fileChooser.setInitialFileName("image.png");
         File file = fileChooser.showSaveDialog(saveImageButton.getScene().getWindow());
 
+        if (file == null)
+            return;
+
         try {
             ImageIO.write(bufferedImage, "png", file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setToolButtonsImages() {
+        Image dotToolImage = null;
+        Image lineToolImage = null;
+        Image rectangleToolImage = null;
+        Image circleToolImage = null;
+
+        try {
+            dotToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/dotTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            lineToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/lineTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            rectangleToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/rectangleTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        try {
+            circleToolImage = new Image(
+                    this.getClass()
+                            .getResource("/images/circleTool.png")
+                            .toURI()
+                            .toString(),
+                    32,
+                    32,
+                    false,
+                    true);
+        } catch (Exception ignored) {}
+
+        dotToolButton.graphicProperty().setValue(new ImageView(dotToolImage));
+        lineToolButton.graphicProperty().setValue(new ImageView(lineToolImage));
+        rectangleToolButton.graphicProperty().setValue(new ImageView(rectangleToolImage));
+        circleToolButton.graphicProperty().setValue(new ImageView(circleToolImage));
+    }
+
+    public void clearCanvas(ActionEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 }
