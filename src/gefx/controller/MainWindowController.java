@@ -149,7 +149,7 @@ public class MainWindowController {
         drawPane.setBackground(new Background(backImage));
         canvas.setWidth(image.getWidth());
         canvas.setHeight(image.getHeight());
-        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        clearCanvas(null);
     }
 
     public void saveImage(MouseEvent event) {
@@ -229,5 +229,9 @@ public class MainWindowController {
         lineToolButton.graphicProperty().setValue(new ImageView(lineToolImage));
         rectangleToolButton.graphicProperty().setValue(new ImageView(rectangleToolImage));
         circleToolButton.graphicProperty().setValue(new ImageView(circleToolImage));
+    }
+
+    public void clearCanvas(ActionEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 }
