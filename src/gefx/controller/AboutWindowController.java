@@ -1,7 +1,6 @@
 package gefx.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 public class AboutWindowController {
