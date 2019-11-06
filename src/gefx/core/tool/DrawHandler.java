@@ -3,8 +3,6 @@ package gefx.core.tool;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 
-import static javafx.scene.input.MouseEvent.*;
-
 public class DrawHandler {
     private Canvas canvas;
     private DrawTool drawTool;
@@ -64,18 +62,18 @@ public class DrawHandler {
 
     public void runHandler() {
         if (drawTool instanceof LineTool) {
-            canvas.addEventHandler(MOUSE_PRESSED, this::mousePressedHandler);
-            canvas.addEventHandler(MOUSE_RELEASED, this::mouseReleasedHandler);
+            canvas.setOnMousePressed(this::mousePressedHandler);
+            canvas.setOnMouseReleased(this::mouseReleasedHandler);
         }
         else if (drawTool instanceof DotTool) {
-            canvas.addEventHandler(MOUSE_PRESSED, this::mousePressedHandler);
-            canvas.addEventHandler(MOUSE_DRAGGED, this::mouseDraggedHandler);
+            canvas.setOnMousePressed(this::mousePressedHandler);
+            canvas.setOnMouseDragged(this::mouseDraggedHandler);
         }
     }
 
     public void stopHandler() {
-        canvas.removeEventHandler(MOUSE_PRESSED, this::mousePressedHandler);
-        canvas.removeEventHandler(MOUSE_RELEASED, this::mouseReleasedHandler);
-        canvas.removeEventHandler(MOUSE_DRAGGED, this::mouseDraggedHandler);
+        canvas.setOnMousePressed(null);
+        canvas.setOnMouseDragged(null);
+        canvas.setOnMouseReleased(null);
     }
 }

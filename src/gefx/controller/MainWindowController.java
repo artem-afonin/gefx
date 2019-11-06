@@ -25,7 +25,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class MainWindowController {
     public Canvas canvas;
@@ -55,10 +54,8 @@ public class MainWindowController {
 
 
     public void initialize() {
-        setTool(new DotTool());
-        drawHandler = new DrawHandler(canvas, tool);
-        drawHandler.runHandler();
-
+        setDotTool();
+        
         prefCanvasWidth = canvas.getWidth();
         prefCanvasHeight = canvas.getHeight();
 
@@ -72,6 +69,8 @@ public class MainWindowController {
         saveImageButton.setOnMouseClicked(this::saveImage);
 
         setToolButtonsImages();
+        dotToolButton.setOnMouseClicked(event -> {setDotTool();});
+        lineToolButton.setOnMouseClicked(event -> {setLineTool();});
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -93,6 +92,11 @@ public class MainWindowController {
         this.tool.setColor(toolColor);
         this.tool.setStrokeWidth(toolWidth);
         this.tool.setCurrentOpacity(toolOpacity);
+        if (drawHandler != null) {
+            drawHandler.setDrawTool(this.tool);
+        } else {
+            drawHandler = new DrawHandler(canvas, this.tool);
+        }
     }
 
     public void setDotTool() {
