@@ -61,13 +61,12 @@ public class DrawHandler {
     }
 
     public void runHandler() {
-        if (drawTool instanceof LineTool) {
-            canvas.setOnMousePressed(this::mousePressedHandler);
-            canvas.setOnMouseReleased(this::mouseReleasedHandler);
-        }
-        else if (drawTool instanceof DotTool) {
+        if (drawTool instanceof DotTool) {
             canvas.setOnMousePressed(this::mousePressedHandler);
             canvas.setOnMouseDragged(this::mouseDraggedHandler);
+        } else {
+            canvas.setOnMousePressed(this::mousePressedHandler);
+            canvas.setOnMouseReleased(this::mouseReleasedHandler);
         }
     }
 

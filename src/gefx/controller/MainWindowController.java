@@ -1,10 +1,7 @@
 package gefx.controller;
 
 import gefx.core.scene.AboutWindow;
-import gefx.core.tool.DotTool;
-import gefx.core.tool.DrawHandler;
-import gefx.core.tool.DrawTool;
-import gefx.core.tool.LineTool;
+import gefx.core.tool.*;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
@@ -55,7 +52,7 @@ public class MainWindowController {
 
     public void initialize() {
         setDotTool();
-        
+
         prefCanvasWidth = canvas.getWidth();
         prefCanvasHeight = canvas.getHeight();
 
@@ -71,6 +68,7 @@ public class MainWindowController {
         setToolButtonsImages();
         dotToolButton.setOnMouseClicked(event -> {setDotTool();});
         lineToolButton.setOnMouseClicked(event -> {setLineTool();});
+        rectangleToolButton.setOnMouseClicked(event -> {setRectangleTool();});
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -105,6 +103,10 @@ public class MainWindowController {
 
     public void setLineTool() {
         setTool(new LineTool());
+    }
+
+    public void setRectangleTool() {
+        setTool(new RectangleTool());
     }
 
     public void toolColorCheckboxHandler(ActionEvent event) {
