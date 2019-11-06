@@ -69,6 +69,7 @@ public class MainWindowController {
         dotToolButton.setOnMouseClicked(event -> {setDotTool();});
         lineToolButton.setOnMouseClicked(event -> {setLineTool();});
         rectangleToolButton.setOnMouseClicked(event -> {setRectangleTool();});
+        circleToolButton.setOnMouseClicked(event -> {setCircleTool();});
     }
 
     public void closeApplication(ActionEvent actionEvent) {
@@ -107,6 +108,10 @@ public class MainWindowController {
 
     public void setRectangleTool() {
         setTool(new RectangleTool());
+    }
+
+    public void setCircleTool() {
+        setTool(new CircleTool());
     }
 
     public void toolColorCheckboxHandler(ActionEvent event) {
